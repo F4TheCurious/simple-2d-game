@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fullscreen Image & Audio</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      background-color: #121212;
+      color: #e0e0e0;
+      font-family: Arial, sans-serif;
+      overflow: hidden;
+    }
+
+    h1 {
+      margin-bottom: 30px;
+    }
+
+    button {
+      padding: 12px 24px;
+      font-size: 18px;
+      border: none;
+      border-radius: 8px;
+      background-color: #1e88e5;
+      color: white;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #1565c0;
+    }
+
+    #displayImage {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <h1>Made By F4</h1>
+  <b>
+  <p>cuma game 2d simpel doang, karena ada bug tolong volumenya di max dulu sebelum pencet tombol start game</p></b>
+  <button id="showBtn">Start Game</button>
+  <img id="displayImage" src="anjay 123.webp" alt="Your Image" />
+  <audio id="bgAudio" src="Jumpscare Sound (mp3cut.net).mp3" loop></audio>
+
+  <script>
+    const btn = document.getElementById('showBtn');
+    const img = document.getElementById('displayImage');
+    const audio = document.getElementById('bgAudio');
+    const text = document.querySelector('h1');
+
+    btn.addEventListener('click', async () => {
+      // Hide button and text
+      btn.style.display = 'none';
+      text.style.display = 'none';
+
+      // Show the image fullscreen
+      img.style.display = 'block';
+
+      // Play audio
+      try {
+        await audio.play();
+      } catch (err) {
+        console.error('Audio play failed:', err);
+      }
+
+      // Request fullscreen
+      if (document.documentElement.requestFullscreen) {
+        document.documentElement.requestFullscreen();
+      } else if (document.documentElement.webkitRequestFullscreen) {
+        document.documentElement.webkitRequestFullscreen();
+      } else if (document.documentElement.msRequestFullscreen) {
+        document.documentElement.msRequestFullscreen();
+      }
+    });
+  </script>
+</body>
+</html>
